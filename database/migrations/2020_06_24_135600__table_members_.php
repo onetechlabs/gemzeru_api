@@ -20,7 +20,6 @@ class TableMembers extends Migration
           $table->string("address");
           $table->string("email")->unique();
           $table->string("phone")->unique();
-          $table->string("password");
           $table->string("token")->nullable();
           $table->enum('status_active', ['active', 'inactive']);
           $table->timestamps();

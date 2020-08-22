@@ -19,13 +19,4 @@ class Member extends Model implements AuthenticatableContract, AuthorizableContr
     protected $fillable = [
           'gamecode', 'password', 'fullname', 'address', 'phone', 'email', 'status_active', 'created_at', 'updated_at', 'token'
     ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
 }

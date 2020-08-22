@@ -59,7 +59,6 @@ class MemberController extends Controller
           'address' => 'min:12',
           'phone' => 'required|unique:members|min:12',
           'email' => 'required|email|unique:members|max:255',
-          'password' => 'required|min:6',
           'status_active' => 'required|in:active,inactive'
         ));
 
@@ -76,10 +75,7 @@ class MemberController extends Controller
         $fullname = $request->input("fullname");
         $address = $request->input("address");
         $phone = $request->input("phone");
-        $password = $request->input("password");
         $status_active = $request->input("status_active");
-
-        $hashPwd = Hash::make($password);
 
         $data = [
           "gamecode" => $gamecode,
@@ -87,7 +83,6 @@ class MemberController extends Controller
           "fullname" => $fullname,
           "address" => $address,
           "phone" => $phone,
-          "password" => $hashPwd,
           "status_active" => $status_active
         ];
 
@@ -146,10 +141,7 @@ class MemberController extends Controller
           $fullname = $request->input("fullname");
           $address = $request->input("address");
           $phone = $request->input("phone");
-          $password = $request->input("password");
           $status_active = $request->input("status_active");
-
-          $hashPwd = Hash::make($password);
 
           $member = Member::find($id);
           $member->gamecode = $gamecode;
@@ -157,7 +149,6 @@ class MemberController extends Controller
           $member->address = $address;
           $member->phone = $phone;
           $member->email = $email;
-          $member->password = $hashPwd;
           $member->status_active = $status_active;
           $member->save();
 
