@@ -106,17 +106,6 @@ class MemberController extends Controller
         if($total_members !==0){
           $validate=\Validator::make($request->all(),
           array(
-            'gamecode' => [
-                "required",
-                Rule::unique('members')->ignore($id),
-                "max:6"
-            ],
-            'email' => [
-                "required",
-                "email",
-                Rule::unique('members')->ignore($id),
-                "max:255"
-            ],
             'phone' => [
                 "required",
                 Rule::unique('members')->ignore($id),
@@ -135,19 +124,15 @@ class MemberController extends Controller
               return response()->json($out, $out['code']);
           }
 
-          $gamecode = $request->input("gamecode");
-          $email = $request->input("email");
           $fullname = $request->input("fullname");
           $address = $request->input("address");
           $phone = $request->input("phone");
           $status_active = $request->input("status_active");
 
           $member = Member::find($id);
-          $member->gamecode = $gamecode;
           $member->fullname = $fullname;
           $member->address = $address;
           $member->phone = $phone;
-          $member->email = $email;
           $member->status_active = $status_active;
           $member->save();
 

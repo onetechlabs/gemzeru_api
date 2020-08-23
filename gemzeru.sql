@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 23, 2020 at 01:50 PM
+-- Generation Time: Aug 23, 2020 at 03:36 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -65,7 +65,8 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `gamecode`, `fullname`, `address`, `email`, `phone`, `token`, `status_active`, `created_at`, `updated_at`) VALUES
-(1, '856213', 'Muhammad Ridwan', 'Jl.Perum Lipi', 'onetechlabsbymuhammadridwan@gmail.com', '081802600152', '5J35aoisjP4b5vs9TKoGHhT7QJ6stCHnMkRFHQMTeK6vw7ecQeTdcnLulqu7UsT6954GolusfMw8YpAs', 'active', '2020-08-22 10:10:18', '2020-08-23 17:36:05');
+(1, '856213', 'Muhammad Ridwan', 'Jl.Perum Lipi', 'onetechlabsbymuhammadridwan@gmail.com', '081802600152', '3H7lhLFluf8oOPOL7KLlkN9FqtEddXpKrOsGHxOIC6hdDMQM981vd2HpKkVddqs8jjPeSMzqeT4YZr19', 'active', '2020-08-22 10:10:18', '2020-08-23 19:12:23'),
+(11, '23202034', 'fjhfhffhhfhfhd', 'dhhfhfhchcjcj', 'mridwan339@gmail.com', '081802600151', '7l335vUlFmaLyBkNFEXDwPbsPMsHcTj4e9iAKXd4DMvdGwwhbVcOAHMrLWKws1b8GuMqTcMwdLnmur4G', 'active', '2020-08-23 20:04:41', '2020-08-23 20:24:27');
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,7 @@ ALTER TABLE `games`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `migrations`
