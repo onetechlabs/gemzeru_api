@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2020 at 08:29 AM
+-- Generation Time: Aug 23, 2020 at 01:50 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -41,13 +41,6 @@ CREATE TABLE `games` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `games`
---
-
-INSERT INTO `games` (`id`, `title`, `cover_image`, `android_package`, `version`, `bundle_version`, `category`, `description`, `status_active`, `created_at`, `updated_at`) VALUES
-(1, 'Go Green', '-', 'com.gemzeru.gogreen', '1.0.9', '10', 'Game Teka Teki', 'Lorem Ipsum Dolor sit Amet', 'active', '2020-08-10 13:19:00', '2020-08-10 13:19:00');
-
 -- --------------------------------------------------------
 
 --
@@ -61,12 +54,18 @@ CREATE TABLE `members` (
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_active` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `gamecode`, `fullname`, `address`, `email`, `phone`, `token`, `status_active`, `created_at`, `updated_at`) VALUES
+(1, '856213', 'Muhammad Ridwan', 'Jl.Perum Lipi', 'onetechlabsbymuhammadridwan@gmail.com', '081802600152', '5J35aoisjP4b5vs9TKoGHhT7QJ6stCHnMkRFHQMTeK6vw7ecQeTdcnLulqu7UsT6954GolusfMw8YpAs', 'active', '2020-08-22 10:10:18', '2020-08-23 17:36:05');
 
 -- --------------------------------------------------------
 
@@ -85,10 +84,10 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2020_06_24_135600__table_members_', 1),
-(2, '2020_06_24_135913__table_users_', 1),
-(3, '2020_06_24_140725__table_payment_instruments_', 1),
-(4, '2020_06_27_113719__table_games_', 1);
+(5, '2020_06_24_135600__table_members_', 1),
+(6, '2020_06_24_135913__table_users_', 1),
+(7, '2020_06_24_140725__table_payment_instruments_', 1),
+(8, '2020_06_27_113719__table_games_', 1);
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `token`, `status_active`, `created_at`, `updated_at`) VALUES
-(1, 'mridwan339@gmail.com', '$2y$10$tOSejpI0k8hNZJiL/063q.n69V402HXh1kcuWAljlZS72N4jJe1zi', 'xSdgspHx5sWirdXPiaU8Guc00UVykZmsOHsdJQ2y9LV09SUuaJWHdRJBexLklqkhW7JGiVTCE62dYdIz', 'active', '2020-08-10 13:18:38', '2020-08-10 13:20:53');
+(1, 'mridwan339@gmail.com', '$2y$10$8nquFspXETnz369O.jkDNeT4q5HK5vYLooN28KQ5jgKrqBV53jXFK', 'KhaOn9jlURXyEppiQwwu0RHFyJ0Tnrfq2xwndXRJdfd338i5cidfgCo8sdsEV5HEsud4BfvTJgaxCHXh', 'active', '2020-08-22 10:09:20', '2020-08-22 10:09:27');
 
 --
 -- Indexes for dumped tables
@@ -175,19 +174,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `payment_instruments`

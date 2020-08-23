@@ -17,7 +17,6 @@ $router->post("/user-create", "AuthController@userCreate");
 $router->post("/user-change-password", ['middleware' => 'if_userlogin', 'uses' => "AuthController@userChangePassword"]);
 $router->post("/member-login", "AuthController@memberLogin");
 $router->post("/member-create", "AuthController@memberCreate");
-$router->post("/member-change-password", ['middleware' => 'if_userlogin', 'uses' => "AuthController@memberChangePassword"]);
 
 //Users
 $router->post("/users", ['middleware' => 'if_userlogin', 'uses' => "UserController@users"]);

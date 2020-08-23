@@ -151,6 +151,85 @@ class AuthController extends Controller
         return response()->json($out, $out['code']);
     }
     //members
+
+    public function memberCreate(Request $request){
+        $validate=\Validator::make($request->all(),
+        array(
+          'fullname' => 'required|min:5',
+          'address' => 'min:12',
+          'phone' => 'required|unique:members|min:12',
+          'email' => 'required|email|unique:members|max:255',
+        ));
+
+        if ($validate->fails()) {
+            $out = [
+                "message" => $validate->messages(),
+                "code"    => 500
+            ];
+            return response()->json($out, $out['code']);
+        }
+
+        $gamecode = date("d").date("Y").rand(10,100);
+        $email = $request->input("email");
+        $fullname = $request->input("fullname");
+        $address = $request->input("address");
+        $phone = $request->input("phone");
+
+        $data = [
+          "gamecode" => $gamecode,
+          "email" => $email,
+          "fullname" => $fullname,
+          "address" => $address,
+          "phone" => $phone,
+          "status_active" => "active"
+        ];
+
+        if (Member::create($data)) {
+            $user = Member::where("status_active","active")->where("email", $email)->first();
+
+            if (!$user) {
+                $out = [
+                    "message" => "Email not Found !",
+                    "code"    => 500,
+                    "result"  => [
+                        "token" => null,
+                    ]
+                ];
+                return response()->json($out, $out['code']);
+            }
+
+            $newtoken  = $this->generateToken();
+
+            $user->update([
+                'token' => $newtoken
+            ]);
+            $out = [
+                "message" => "Success",
+                "code"    => 200,
+                "result"  => [
+                    "token" => $newtoken,
+                    "user_id" => $user->id,
+                    "gamecode" => $gamecode,
+                    "email" => $email,
+                    "fullname" => $fullname,
+                    "address" => $address,
+                    "phone" => $phone,
+                    "status_active" => "active"
+                ]
+            ];
+        } else {
+            $out = [
+                "message" => "Failed to Create Member",
+                "code"   => 500,
+                "result"  => [
+                    "token" => null,
+                ]
+            ];
+        }
+
+        return response()->json($out, $out['code']);
+    }
+
     public function memberLogin(Request $request){
         $validate=\Validator::make($request->all(),
         array(
