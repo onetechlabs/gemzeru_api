@@ -17,6 +17,6 @@ class Member extends Model implements AuthenticatableContract, AuthorizableContr
      * @var array
      */
     protected $fillable = [
-          'gamecode', 'password', 'fullname', 'address', 'phone', 'email', 'status_active', 'created_at', 'updated_at', 'token'
+          'gamecode', 'fullname', 'address', 'phone', 'email', 'status_active', 'created_at', 'updated_at', 'token'
     ];
 }

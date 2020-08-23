@@ -124,7 +124,6 @@ class MemberController extends Controller
             ],
             'fullname' => 'required|min:5',
             'address' => 'min:12',
-            'password' => 'required|min:6',
             'status_active' => 'required|in:active,inactive'
           ));
 
