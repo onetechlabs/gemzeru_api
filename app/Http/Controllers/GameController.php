@@ -34,8 +34,8 @@ class GameController extends Controller
     }
 
     public function games(Request $request){
-        $games = Game::limit($this->perpage)->offset($this->spage)->orderBy('id', 'desc')->get();
-        $total_game = Game::all()->count();
+        $games = Game::limit($this->perpage)->offset($this->spage)->where("status_active","active")->orderBy('id', 'desc')->get();
+        $total_game = Game::all()->where("status_active","active")->count();
         $total_page = ceil($total_game / $this->perpage);
         $out = [
             "message" => "Success",
