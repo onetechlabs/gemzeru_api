@@ -231,14 +231,25 @@ class AuthController extends Controller
     }
 
     public function memberLogin(Request $request){
-        $validate=\Validator::make($request->all(),
-        array(
-          'email' => 'required|email',
-        ));
+
 
         $email = $request->input("email");
+        $gamecode = $request->input("gamecode");
+        
+        if($gamecode!==null){
+            $validate=\Validator::make($request->all(),
+            array(
+            'gamecode' => 'required',
+            ));
+            $user = Member::where("status_active","active")->where("gamecode", $gamecode)->first();
+        }else{
+            $validate=\Validator::make($request->all(),
+            array(
+            'email' => 'required|email',
+            ));
+            $user = Member::where("status_active","active")->where("email", $email)->first();
+        }
 
-        $user = Member::where("status_active","active")->where("email", $email)->first();
 
         if ($validate->fails()) {
             $out = [
@@ -251,7 +262,7 @@ class AuthController extends Controller
             return response()->json($out, $out['code']);
         }else if (!$user) {
             $out = [
-                "message" => "Email not Found !",
+                "message" => "Email / Game Code not Found !",
                 "code"    => 500,
                 "result"  => [
                     "token" => null,
